@@ -49,4 +49,29 @@ class UserContacts extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
         ];
     }
+
+    public function getSprContactType()
+    {
+        return $this->hasOne(SprContactType::className(),['id' => 'id_vid_type']);
+    }
+
+    public function getSprUsers()
+    {
+        return $this->hasOne(SprUsers::className(),['id' => 'user_id']);
+    }
+
+    public function setTestContact()
+    {
+        $faker = \Faker\Factory::create('Ru_RU');
+        $id_vid = rand(1,6);
+        $this -> id_vid_type = $id_vid;
+        if ($id_vid < 5){
+            $this -> data = $faker -> phoneNumber;
+        } elseif ($id_vid == 5) {
+            $this->data = $faker->email;
+        } else $this -> data = $faker -> userName;
+        $this -> comment = $faker -> realText(50);
+        $this -> user_id = (string)rand(1,400);
+    }
+
 }

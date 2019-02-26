@@ -56,4 +56,43 @@ class SprUsers extends \yii\db\ActiveRecord
             'descript' => 'Комментарий',
         ];
     }
+
+    public function getUserContacts()
+    {
+        return $this->hasMany(UserContacts::className(), ['user_id' => 'id']);
+    }
+
+    public function getUserAddress()
+    {
+        return $this->hasOne(UserAddress::className(), ['user_id' => 'id']);
+    }
+
+    public function getPassportDetail()
+    {
+        return $this->hasOne(PassportDetails::className(), ['user_id' => 'id']);
+    }
+
+    public function getSprStatus()
+    {
+        return $this->hasMany(SprStatus::className(), ['id' => 'status_id']);
+    }
+
+    public function setTestUser()
+    {
+        $faker = \Faker\Factory::create('Ru_RU');
+        $this -> login = $faker -> userName;
+        $this -> name = $faker -> firstName;
+        $this -> last_name = $faker -> lastName;
+        $this -> setPassword($faker -> password);
+        $this -> date_reg = $faker -> date();
+        $this -> descript = $faker -> text(100);
+    }
+
+    public function setPassword($password)
+    {
+        $this -> password =
+            Yii::$app ->  security
+                -> generatePasswordHash($password, 12);
+    }
+
 }

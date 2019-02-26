@@ -57,4 +57,22 @@ class PassportDetails extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
         ];
     }
+
+    public function setTestUserPassport()
+    {
+        $faker = \Faker\Factory::create('Ru_RU');
+        $this -> passport_series = $faker -> unique()->randomNumber(4);
+        $this -> passport_number = $faker -> unique()->numberBetween($min = 100000, $max = 999999);
+        $this -> passport_issued_by = $faker -> company;
+        $this -> passport_when_issued = $faker -> date();
+        $this -> passport_division_number = (string)mt_rand(100,999).'-'.mt_rand(100,999);
+        $this -> comment = $faker -> realText(50);
+        $this -> user_id = (string)rand(1,400);
+
+    }
+
+    public function getSprUsers()
+    {
+        return $this->hasOne(SprUsers::className(),['id' => 'user_id']);
+    }
 }

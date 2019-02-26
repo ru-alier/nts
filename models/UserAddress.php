@@ -61,4 +61,23 @@ class UserAddress extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
         ];
     }
+
+    public function getSprUsers()
+    {
+        return $this->hasOne(SprUsers::className(),['id' => 'user_id']);
+    }
+
+    public function setTestAddress()
+    {
+        $faker = \Faker\Factory::create('Ru_RU');
+        $this -> country = $faker -> country;
+        $this -> region = $faker -> postcode;
+        $this -> city = $faker -> city;
+        $this -> street = $faker -> streetName;
+        $this -> building = $faker -> buildingNumber;
+        $this -> house_number = $faker -> buildingNumber;
+        $this -> apartment = $faker -> numberBetween(1, 999);
+        $this -> comment = $faker -> realText(100);
+        $this -> user_id = (string)rand(1,400);
+    }
 }

@@ -43,4 +43,9 @@ class SprStatus extends \yii\db\ActiveRecord
             'status_name' => 'Status Name',
         ];
     }
+
+    public function getSprUsers()
+    {
+        return $this->hasMany(SprUsers::tableName(),['id' => 'status_id']);
+    }
 }

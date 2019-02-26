@@ -43,4 +43,9 @@ class SprContactType extends \yii\db\ActiveRecord
             'type' => 'Type',
         ];
     }
+
+    public function getUserContacts()
+    {
+        return $this->hasMany(UserContacts::className(),['id_vid_type' => 'id']);
+    }
 }

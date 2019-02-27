@@ -1,8 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
+use yii\helpers\Url;
 use yii\widgets\Pjax;
+use kartik\grid\ActionColumn;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SprUsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -21,12 +25,26 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+            'export'=>false,
+            'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'width' => '50px',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail' => function ($model, $key, $index, $column) {
+                    return Yii::$app->controller->
+                    renderPartial('_details.php', ['model' => $model]);
+                },
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'expandOneOnly' => true,
+                ],
             [
                 'attribute' => 'id',
                     'value' => 'userAddress.city',
@@ -39,7 +57,18 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'status_id',
             //'descript:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'kartik\grid\ActionColumn',
+//                'dropdown' => $this->dropdown,
+                'dropdownOptions' => ['class' => 'float-right'],
+                'urlCreator' => function($action, $model, $key, $index) { return Url::to([$action, 'id' => $key]); },
+                'viewOptions' => ['title' => 'This will launch the book details page. Disabled for this demo!', 'data-toggle' => 'tooltip'],
+                'updateOptions' => ['<?= Html::encode($this->update) ?>', 'title' => 'This will launch the book update page. Disabled for this demo!', 'data-toggle' => 'tooltip'],
+                'deleteOptions' => ['title' => 'This will launch the book delete action. Disabled for this demo!', 'data-toggle' => 'tooltip'],
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+            ],
+
+//            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

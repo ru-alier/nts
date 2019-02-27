@@ -84,24 +84,26 @@ AppAsset::register($this);
         console.log( "Объектная модель готова к использованию!" );
 
         function addDiv(){
+            $('tr td').off("dblclick");
             $(this).attr('id','active');
             let thisName = $(this).text().trim();
             $(this).append(`
-            <div class="input-group mb-3">
+            <div class="input-group" id="tempDiv">
             <input type="text" class="form-control" placeholder="новое значение" aria-label="Recipient's username" aria-describedby="button-addon2" id="InputData" value="">
             <div class="input-group-append">
-            <button class="btn btn-success" style="margin-top: 10px" type="button" id="superButton">Сохранить</button><span col-1><span>
+            <button class="btn btn-success" style="margin-top: 10px" type="button" id="superButton">Сохранить</button>
             <button class="btn btn-primary" style="margin-top: 10px" type="button" id="cancelButton">Отменить</button>
+            <button class="btn btn-primary" style="margin-top: 10px" type="button" id="dButton">Удалить</button>
             </div>
             </div>
             `
             );
             $('#InputData').val(thisName);
-            $('tr td').off("dblclick");
+
         };
 
         function delDiv() {
-            $(this).parents('.input-group').remove();
+            $('#tempDiv').remove();
             $('td').attr('id', null);
             $('tr td').on("dblclick", addDiv);
         };
@@ -110,16 +112,41 @@ AppAsset::register($this);
             if(confirm('Применить изменения?')) {
                 let nameInput = $('#InputData').val();
                 $(this).closest('td').text(nameInput);
+                $('#active').css({
+                "background-color": "green",
+                    "border-left": "2px solid yellow"
+                });
                 delDiv();
             }
        };
 
+        function delElement() {
+            var tempID = $(this).parents('tr').data('key');
+            if (confirm('Ты серьезно хочешь удалить \n пользователя с ID: ' + tempID +'?')) {
+            alert('Пользовательна всегда удален :(');
+            $('[data-key='+tempID+']').css({
+                "background-color": "red",
+                "border-left": "2px solid yellow"
+            });
+                $('#active').css({
+                    "background-color": "red",
+                    "border-left": "2px solid yellow"
+                });
+            delDiv();
+        }
+        };
+
+        $('table').on('click', '#dButton', delElement);
 
         $('tr td').on("dblclick", addDiv);
 
-        $('table').on('click', 'tbody #superButton', appendData);
+        $('table').on('click', '#superButton', appendData);
 
-        $('table').on('click', 'tbody #cancelButton', delDiv);
+        $('table').on('click', '#cancelButton', delDiv);
+
+    $(this).click(function(e){
+        console.log();
+    });
 
     });
 </script>

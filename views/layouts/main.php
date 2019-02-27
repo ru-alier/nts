@@ -76,6 +76,53 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<!--    Action and Events -->
+<script>
+
+    $(document).ready(function (){
+
+        console.log( "Объектная модель готова к использованию!" );
+
+        function addDiv(){
+            $(this).attr('id','active');
+            let thisName = $(this).text().trim();
+            $(this).append(`
+            <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="новое значение" aria-label="Recipient's username" aria-describedby="button-addon2" id="InputData" value="">
+            <div class="input-group-append">
+            <button class="btn btn-success" style="margin-top: 10px" type="button" id="superButton">Сохранить</button><span col-1><span>
+            <button class="btn btn-primary" style="margin-top: 10px" type="button" id="cancelButton">Отменить</button>
+            </div>
+            </div>
+            `
+            );
+            $('#InputData').val(thisName);
+            $('tr td').off("dblclick");
+        };
+
+        function delDiv() {
+            $(this).parents('.input-group').remove();
+            $('td').attr('id', null);
+            $('tr td').on("dblclick", addDiv);
+        };
+
+        function appendData() {
+            if(confirm('Применить изменения?')) {
+                let nameInput = $('#InputData').val();
+                $(this).closest('td').text(nameInput);
+                delDiv();
+            }
+       };
+
+
+        $('tr td').on("dblclick", addDiv);
+
+        $('table').on('click', 'tbody #superButton', appendData);
+
+        $('table').on('click', 'tbody #cancelButton', delDiv);
+
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

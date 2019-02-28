@@ -30,7 +30,7 @@ class UserContacts extends \yii\db\ActiveRecord
     {
         return [
             [['id_vid_type', 'data', 'user_id'], 'required'],
-            [['id_vid_type', 'user_id'], 'integer'],
+            [[ 'user_id'], 'integer'],
             [['data'], 'string', 'max' => 30],
             [['comment'], 'string', 'max' => 500],
         ];
@@ -43,9 +43,9 @@ class UserContacts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_vid_type' => 'Id Vid Type',
-            'data' => 'Data',
-            'comment' => 'Comment',
+            'id_vid_type' => 'Вид связи',
+            'data' => 'Данные',
+            'comment' => 'Комментарий',
             'user_id' => 'User ID',
         ];
     }

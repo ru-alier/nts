@@ -7,17 +7,17 @@ use yii\widgets\DetailView;
 /* @var $model app\models\UserAddress */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'User Addresses', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Адреса', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Пользователь '.$model->user_id;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-address-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['Удалить', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            'user_id',
+            [
+                'label'=>'Index ID',
+                'value'=> $model->id,
+            ],
             'country',
             'region',
             'city',
@@ -38,8 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'house_number',
             'apartment',
             'comment',
-            'user_id',
         ],
     ]) ?>
 
 </div>
+<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>

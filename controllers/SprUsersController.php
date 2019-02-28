@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\components\PaspWidget;
+use app\models\PassportDetails;
 use Yii;
 use app\models\SprUsers;
 use app\models\SprUsersSearch;
@@ -52,8 +54,13 @@ class SprUsersController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+
+        return $this->render('view',
+        [
             'model' => $this->findModel($id),
+//            'passpmodel' => $passpmodel,
+//            'addressmodel' => $addressmodel,
+//            'contactmodel' => $contactmodel
         ]);
     }
 

@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\UserAddress */
 
-$this->title = 'Create User Address';
-$this->params['breadcrumbs'][] = ['label' => 'User Addresses', 'url' => ['index']];
+$this->title = 'Заполнение адреса пользователя';
+$this->params['breadcrumbs'][] = ['label' => 'Адреса', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-address-create">

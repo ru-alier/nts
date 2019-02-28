@@ -7,8 +7,8 @@ use yii\widgets\DetailView;
 /* @var $model app\models\UserContacts */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'User Contacts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Контакты', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Пользователь '.$this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-contacts-view">
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы дествительно хотите удалить этот контакт?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,12 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'user_id',
             'id',
             'id_vid_type',
             'data',
             'comment',
-            'user_id',
+
         ],
     ]) ?>
 
 </div>
+<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>

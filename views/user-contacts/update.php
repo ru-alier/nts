@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\UserContacts */
 
-$this->title = 'Update User Contacts: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'User Contacts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Редактирование контата пользователя: ' . $model->user_id;
+$this->params['breadcrumbs'][] = ['label' => 'Контакты', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Пользователь '.$model->user_id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="user-contacts-update">
 
@@ -19,3 +19,4 @@ $this->params['breadcrumbs'][] = 'Update';
     ]) ?>
 
 </div>
+<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>

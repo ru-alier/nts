@@ -1,25 +1,24 @@
 <?php
 
+
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\DetailView;
-use yii\widgets\Menu;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SprUsers */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Spr Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Справочник пользователей', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="spr-users-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Пользователь: <?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -54,43 +53,28 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 echo \yii\bootstrap\Tabs::widget([
 'items' => [
-//
-//['label' => 'Контакты', 'content' => $this->render('../../user-contacts/view', ['model' => $model])],
-//['label' => 'Адрес', 'content' => [Url::toRoute(['user-address/view', 'id'=> $model->id])]],
-//['label' => 'Паспорт', 'content' => [Url::toRoute(['passport-details/view', 'id'=> $model->id])], 'class' => 'active'],
-
-
-    ['label' => 'Контакты', 'content' => '<h1>1</h1>'],
-    ['label' => 'Адрес', 'content' => '<h1>2</h1>'],
-    ['label' => 'Паспорт', 'content' => '<h1>3</h1>'],
+    [
+     'label' => 'Контакты',
+     'content' => $this->render('_contact', ['id' => $model->id]),
+        'class'=>'glyphicon glyphicon-home'
+     ],
+    ['label' => 'Адрес',
+    'content' => $this->render('_address', ['id' => $model->id])
+    ],
+    ['label' => 'Паспорт',
+    'content' => $this->render('_passp', ['id' => $model->id])
+    ],
 ]]);
 
 
 
-$paspmodel = new \app\models\PassportDetails();
-if (($paspmodel->findOne($model->id)) !== null) {
-
-    echo DetailView::widget([
-        'model' => new $paspmodel,
-        'attributes' => [
-            'id',
-            'passport_series',
-            'passport_number',
-            'passport_issued_by',
-            'passport_when_issued',
-            'passport_division_number',
-            'comment',
-            'user_id',
-        ],
-    ]);
-} else echo 'Паспортные данные не заполненны!';
-
-echo \yii\bootstrap\Carousel::widget([
-    'items' => [
-
-        ['label' => 'Контакты', 'content' => '<h1>1</h1>', 'active' => 'true'],
-        ['label' => 'Адрес', 'content' => '<h1>2</h1>'],
-        ['label' => 'Паспорт', 'content' => '<h1>3</h1>'],
-    ]]);
+//echo \yii\bootstrap\Carousel::widget([
+//    'items' => [
+//
+//        ['label' => 'Контакты', 'content' => '<h1>1</h1>', 'active' => 'true'],
+//        ['label' => 'Адрес', 'content' => '<h1>2</h1>'],
+//        ['label' => 'Паспорт', 'content' => '<h1>3</h1>'],
+//    ]]);
 ?>
 </div()>
+<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>

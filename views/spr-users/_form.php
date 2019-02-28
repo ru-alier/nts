@@ -27,9 +27,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'descript')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Записать', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>

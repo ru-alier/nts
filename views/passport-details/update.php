@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\PassportDetails */
 
-$this->title = 'Update Passport Details: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Passport Details', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Редактирование паспорта: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Паспортные данные', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Пользователь '. $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'редактирование';
 ?>
 <div class="passport-details-update">
 

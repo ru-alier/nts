@@ -33,11 +33,12 @@ class PassportDetails extends \yii\db\ActiveRecord
     {
         return [
             [['passport_series', 'passport_number', 'passport_issued_by', 'passport_when_issued', 'user_id'], 'required'],
-            [['passport_series', 'passport_number', 'user_id'], 'integer'],
-            [['passport_when_issued'], 'safe'],
+            [['user_id'], 'integer'],
+            [['passport_when_issued', 'passport_series', 'passport_number'], 'safe'],
             [['passport_issued_by'], 'string', 'max' => 255],
             [['passport_division_number'], 'string', 'max' => 7],
             [['comment'], 'string', 'max' => 1000],
+            [['passport_series', 'passport_number'],'string', 'max' => 6]
         ];
     }
 
@@ -48,12 +49,12 @@ class PassportDetails extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'passport_series' => 'Passport Series',
-            'passport_number' => 'Passport Number',
-            'passport_issued_by' => 'Passport Issued By',
-            'passport_when_issued' => 'Passport When Issued',
-            'passport_division_number' => 'Passport Division Number',
-            'comment' => 'Comment',
+            'passport_series' => 'Серия',
+            'passport_number' => 'Номер',
+            'passport_issued_by' => 'Кем выдан',
+            'passport_when_issued' => 'Когда выдан',
+            'passport_division_number' => 'Номер подразделения',
+            'comment' => 'Комментарий',
             'user_id' => 'User ID',
         ];
     }

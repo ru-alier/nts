@@ -17,8 +17,8 @@ class PassportDetailsSearch extends PassportDetails
     public function rules()
     {
         return [
-            [['id', 'passport_series', 'passport_number', 'user_id'], 'integer'],
-            [['passport_issued_by', 'passport_when_issued', 'passport_division_number', 'comment'], 'safe'],
+            [['id', 'user_id'], 'integer'],
+            [['passport_issued_by', 'passport_when_issued', 'passport_division_number', 'comment', 'passport_series', 'passport_number'], 'safe'],
         ];
     }
 
@@ -59,16 +59,23 @@ class PassportDetailsSearch extends PassportDetails
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'passport_series' => $this->passport_series,
-            'passport_number' => $this->passport_number,
             'passport_when_issued' => $this->passport_when_issued,
             'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'passport_issued_by', $this->passport_issued_by])
             ->andFilterWhere(['like', 'passport_division_number', $this->passport_division_number])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
+            ->andFilterWhere(['like', 'comment', $this->comment])
+            ->andFilterWhere(['like','passport_series', $this->passport_series])
+            ->andFilterWhere(['like','passport_number', $this->passport_number]);
 
         return $dataProvider;
+    }
+
+    public static function findOnePassport($id)
+    {
+        return
+//            PassportDetailsSearch::find()->where(['user_id'=>$id])->limit(1)->one();
+        PassportDetailsSearch::findOne(['user_id'=>$id]);
     }
 }

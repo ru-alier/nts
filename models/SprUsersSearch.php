@@ -18,7 +18,7 @@ class SprUsersSearch extends SprUsers
     {
         return [
             [[ 'status_id'], 'integer'],
-            [['login', 'password', 'name', 'last_name', 'date_reg', 'descript', 'id', ], 'safe'],
+            [[ 'login', 'password', 'name', 'last_name', 'date_reg', 'descript', 'id', ], 'safe'],
         ];
     }
 
@@ -41,7 +41,6 @@ class SprUsersSearch extends SprUsers
     public function search($params)
     {
         $query = SprUsers::find();
-        $query->joinWith(['userAddress']);
 
         // add conditions that should always apply here
 
@@ -59,12 +58,13 @@ class SprUsersSearch extends SprUsers
 
         // grid filtering conditions
         $query->andFilterWhere([
-//            'id' => $this->id,
+            'id' => $this->id,
             'date_reg' => $this->date_reg,
             'status_id' => $this->status_id,
         ]);
 
-        $query->andFilterWhere(['like', 'city', $this->id])
+        $query
+//            ->andFilterWhere(['like', 'city', $this->id])
             ->andFilterWhere(['like', 'login', $this->login])
             ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'name', $this->name])

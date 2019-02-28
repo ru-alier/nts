@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\SprUsers */
 
-$this->title = 'Create Spr Users';
-$this->params['breadcrumbs'][] = ['label' => 'Spr Users', 'url' => ['index']];
+$this->title = 'Создание новой записи пользователя';
+$this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="spr-users-create">

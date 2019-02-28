@@ -17,8 +17,8 @@ class UserContactsSearch extends UserContacts
     public function rules()
     {
         return [
-            [['id', 'id_vid_type', 'user_id'], 'integer'],
-            [['data', 'comment'], 'safe'],
+            [['id', 'user_id'], 'integer'],
+            [['data', 'id_vid_type', 'comment'], 'safe'],
         ];
     }
 
@@ -41,6 +41,7 @@ class UserContactsSearch extends UserContacts
     public function search($params)
     {
         $query = UserContacts::find();
+        $query->joinWith(['sprContactType']);
 
         // add conditions that should always apply here
 
@@ -59,12 +60,13 @@ class UserContactsSearch extends UserContacts
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_vid_type' => $this->id_vid_type,
+//            'id_vid_type' => $this->id_vid_type,
             'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'data', $this->data])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
+            ->andFilterWhere(['like', 'comment', $this->comment])
+            ->andFilterWhere(['like', 'type', $this->id_vid_type]);
 
         return $dataProvider;
     }

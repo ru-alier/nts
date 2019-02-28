@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'user_id')->textInput()->label('Ввидете ID пользователя для которого создается/редактируется запись') ?>
+
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'region')->textInput(['maxlength' => true]) ?>
@@ -28,10 +30,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Записать', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

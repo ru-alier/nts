@@ -1,8 +1,7 @@
 <?php
 
+use app\models\SprUsersSearch;
 use yii\helpers\Html;
-use kartik\grid\DataColumn;
-use kartik\grid\BooleanColumn;
 use kartik\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -24,17 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Spr Users', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать запись для пользователя', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
-//            'export'=>true,
-            'dataProvider' => $dataProvider,
+        'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
-
-//            'id',
             [
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'width' => '50px',
@@ -48,9 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
                 'expandOneOnly' => true,
                 ],
+
             [
-                'attribute' => 'id',
-                    'value' => 'userAddress.city',
+                'attribute' => 'city',
+                'value' => 'userAddress.city',
+//                    SprUsersSearch::find()->joinWith(['userAddress'])
+//                    ->andFilterWhere(['like', 'city', city]),
+                'label' => 'Город'
             ],
             'login',
             [
@@ -63,6 +63,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'password',
             'name',
             'last_name',
+            [
+                'attribute' => 'id',
+                'value' => 'id',
+                'width' => '70px',
+            ],
 //            'date_reg',
 
             //'descript:ntext',
@@ -72,9 +77,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dropdown' => 'kartik\bs4Dropdown',
                 'dropdownOptions' => ['class' => 'dropdown-menu-right'],
                 'urlCreator' => function($action, $model, $key, $index) { return Url::to([$action, 'id' => $key]); },
-                'viewOptions' => ['title' => 'This will launch the book details page. Disabled for this demo!', 'data-toggle' => 'tooltip'],
-                'updateOptions' => ['<?= Html::encode($this->update) ?>', 'title' => 'This will launch the book update page. Disabled for this demo!', 'data-toggle' => 'tooltip'],
-                'deleteOptions' => ['title' => 'This will launch the book delete action. Disabled for this demo!', 'data-toggle' => 'tooltip'],
+                'viewOptions' => ['title' => 'Перейти к просмотру полной карточки пользователя', 'data-toggle' => 'tooltip'],
+                'updateOptions' => ['<?= Html::encode($this->update) ?>', 'title' => 'Перейти к редактированию данных пользователя', 'data-toggle' => 'tooltip'],
+                'deleteOptions' => ['title' => 'Удаление пользователя', 'data-toggle' => 'tooltip'],
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
             ],
 

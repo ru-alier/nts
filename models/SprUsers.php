@@ -33,7 +33,7 @@ class SprUsers extends \yii\db\ActiveRecord
     {
         return [
             [['login', 'password', 'name', 'last_name', 'date_reg', 'descript'], 'required'],
-            [['date_reg', 'status_id'], 'safe'],
+            [['date_reg', 'status_id','city'], 'safe'],
 //            [['status_id'], 'integer'],
             [['descript'], 'string'],
             [['login', 'password', 'name', 'last_name'], 'string', 'max' => 50],
@@ -46,7 +46,7 @@ class SprUsers extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'id auto incriment',
+            'id' => 'ID',
             'login' => 'Логин',
             'password' => 'Пароль',
             'name' => 'Имя',

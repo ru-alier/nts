@@ -1,13 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserAddressSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'User Addresses';
+$this->title = 'Адреса пользователей';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-address-index">
@@ -16,27 +17,56 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create User Address', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить новый адрес', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+//            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'width' => '50px',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail' => function ($model, $key, $index, $column) {
+                    return Yii::$app->controller->
+                    renderPartial('_details.php', ['model' => $model]);
+                },
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'expandOneOnly' => true,
+            ],
+//            'id',
             'country',
-            'region',
+//            'region',
             'city',
             'street',
             //'building',
-            //'house_number',
+            [
+                'attribute' => 'house_number',
+                'value' => 'house_number',
+                'label' => 'Дом',
+                'width' => '70px',
+//                'vAlign' => 'ALIGN_MIDDLE'
+            ],
+//            'house_number',
             //'apartment',
-            //'comment',
+//            'comment',
             //'user_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'kartik\grid\ActionColumn',
+                'dropdown' => 'kartik\bs4Dropdown',
+                'dropdownOptions' => ['class' => 'col-md-4 dropdown-menu-right'],
+                'urlCreator' => function($action, $model, $key, $index) { return Url::to([$action, 'id' => $key]); },
+                'viewOptions' => ['title' => 'Перейти ', 'data-toggle' => 'tooltip'],
+                'updateOptions' => ['<?= Html::encode($this->update) ?>', 'title' => 'This will launch the book update page. Disabled for this demo!', 'data-toggle' => 'tooltip'],
+                'deleteOptions' => ['title' => 'This will launch the book delete action. Disabled for this demo!', 'data-toggle' => 'tooltip'],
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+            ],
+//            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

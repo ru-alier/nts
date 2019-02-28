@@ -19,3 +19,4 @@ $this->params['breadcrumbs'][] = 'редактирование';
     ]) ?>
 
 </div>
+<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>

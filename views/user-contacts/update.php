@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\UserContacts */
 
-$this->title = 'Редактирование контата пользователя: ' . $model->user_id;
+$this->title = 'Редактирование контакта пользователя: ' . $model->user_id;
 $this->params['breadcrumbs'][] = ['label' => 'Контакты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Пользователь '.$model->user_id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактирование';

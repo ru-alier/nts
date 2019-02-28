@@ -38,7 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
                 'expandOneOnly' => true,
             ],
-//            'id',
+            [
+                'attribute' =>'user_id',
+                'value' => 'user_id',
+                'width' => '70px',
+                'label' => 'ID'
+
+            ],
             'country',
 //            'region',
             'city',

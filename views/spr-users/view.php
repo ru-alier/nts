@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+<?php    $status = \app\models\SprUsersSearch::find()->with(['sprStatus'])->where(['id'=>$model->id])->one(); ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -36,7 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'last_name',
             'date_reg',
-            'status_id',
+            [
+                'attribute'=>'status_id',
+                'value'=> $status->sprStatus->status_name
+            ],
+//            'status_id',
             'descript:ntext',
         ],
     ]) ?>
@@ -51,20 +55,53 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--</ul>-->
 <?php //echo Yii::$app->controller->render(Url::toRoute(Url::toRoute(['passport-details/view', 'id'=> $model->id]))) ?>
 <?php
+
+//$contacts = \app\models\UserContactsSearch::find()->where(['user_id'=>$model->id])->asArray()->all();
+
+//$contTab=[];0
+//
+//foreach ($contacts as $item){
+//    $idTemp = $item[id];
+//    $contTab=array_push(['label'=>'контакт'.$idTemp], ['content'=>$this->render('_contact', cpmpact[id]);
+
+//};
+//['label' => 'Адрес 1'.$model->id,'content' => $this->render('_contact', ['id' => $model->id])],
+//
+//['label' => 'Адрес 2','content' => $this->render('_contact', ['id' => $model->id])]]
+
+
+
 echo \yii\bootstrap\Tabs::widget([
 'items' => [
     [
      'label' => 'Контакты',
-     'content' => $this->render('_contact', ['id' => $model->id]),
-        'class'=>'glyphicon glyphicon-home'
-     ],
+//     'items'=>[
+//             [
+            'label' => 'Контакты',
+            'content' => $this->render('_contact', ['id' => $model->id])
+            ],
+//            [
+//            'label' => 'Контакт 2',
+//            'content' => $this->render('_contact', ['id' => $contacts[1]])
+//            ],
+//            [
+//             'label' => 'Контакт 3',
+//             'content' => $this->render('_contact', ['id' => $contacts[2]])
+//            ],
+//            [
+//             'label' => 'Контакт 4',
+//             'content' => $this->render('_contact', ['id' => $contacts[3]])
+//            ],
+//            ]
+//    ],
+
     ['label' => 'Адрес',
     'content' => $this->render('_address', ['id' => $model->id])
     ],
     ['label' => 'Паспорт',
     'content' => $this->render('_passp', ['id' => $model->id])
     ],
-]]);
+]])
 
 
 

@@ -18,7 +18,7 @@ class SprUsersSearch extends SprUsers
     {
         return [
             [[ 'status_id'], 'integer'],
-            [[ 'login', 'password', 'name', 'last_name', 'date_reg', 'descript', 'id', ], 'safe'],
+            [[ 'login', 'password', 'name', 'last_name', 'date_reg', 'descript', 'id'], 'safe'],
         ];
     }
 
@@ -41,6 +41,7 @@ class SprUsersSearch extends SprUsers
     public function search($params)
     {
         $query = SprUsers::find();
+//        $query->joinWith('userAddress');
 
         // add conditions that should always apply here
 

@@ -35,7 +35,7 @@ class SprUsers extends \yii\db\ActiveRecord
             [['login', 'password', 'name', 'last_name', 'date_reg', 'descript'], 'required'],
             [['date_reg', 'status_id','city'], 'safe'],
 //            [['status_id'], 'integer'],
-            [['descript'], 'string'],
+            [['descript','city'], 'string'],
             [['login', 'password', 'name', 'last_name'], 'string', 'max' => 50],
         ];
     }
@@ -54,6 +54,7 @@ class SprUsers extends \yii\db\ActiveRecord
             'date_reg' => 'Дата регистрации',
             'status_id' => 'Статус',
             'descript' => 'Комментарий',
+            'city' => 'Город'
         ];
     }
 

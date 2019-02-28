@@ -10,13 +10,13 @@ if (UserContactsSearch::findOne(['user_id'=>$id])===null) {
     echo '<h4>* Запомните текущий ID пользователя он вам понадобиться для заполнения формы!</h4>';
     return;
 };
-$model = UserContactsSearch::find()->with('sprContactType')->andFilterWhere(['user_id'=>$id])->one();
-print_r($model);
+$model = UserContactsSearch::find()->with('sprContactType')->andFilterWhere(['user_id'=>$id])->One();
 ?>
 
-<div class="passport-details-form">
 
-    <?= DetailView::widget([
+<div class="passport-details-form">
+<?php
+    echo DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',

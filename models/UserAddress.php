@@ -50,14 +50,14 @@ class UserAddress extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'country' => 'Country',
-            'region' => 'Region',
-            'city' => 'City',
-            'street' => 'Street',
-            'building' => 'Building',
-            'house_number' => 'House Number',
-            'apartment' => 'Apartment',
-            'comment' => 'Comment',
+            'country' => 'Страна',
+            'region' => 'Регион',
+            'city' => 'Город',
+            'street' => 'Улица',
+            'building' => 'Строение',
+            'house_number' => 'Номер дома',
+            'apartment' => 'Квартира(офис)',
+            'comment' => 'Комментарий',
             'user_id' => 'User ID',
         ];
     }

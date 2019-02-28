@@ -11,6 +11,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@web'   => '/web/index.php',
     ],
     'modules' => [
         'gridview' =>  [
@@ -18,9 +19,13 @@ $config = [
             // enter optional module parameters below - only if you need to
             // use your own export download action or custom translation
             // message source
-             'downloadAction' => 'gridview/export/download',
-            // 'i18n' => []
-        ]
+//             'downloadAction' => 'gridview/export/download',
+//             'i18n' => [
+//                 'class' => 'yii \ i18n \ PhpMessageSource' ,
+//                 'basePath' => '@ kvgrid / messages' ,
+//                 'forceTranslation' => true
+//             ]
+        ],
     ],
     'components' => [
         'request' => [
@@ -59,6 +64,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'kartik\form\ActiveFormAsset' => [
+                    'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+                ],
             ],
         ],
     ],

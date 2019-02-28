@@ -33,8 +33,8 @@ class SprUsers extends \yii\db\ActiveRecord
     {
         return [
             [['login', 'password', 'name', 'last_name', 'date_reg', 'descript'], 'required'],
-            [['date_reg'], 'safe'],
-            [['status_id'], 'integer'],
+            [['date_reg', 'status_id'], 'safe'],
+//            [['status_id'], 'integer'],
             [['descript'], 'string'],
             [['login', 'password', 'name', 'last_name'], 'string', 'max' => 50],
         ];
@@ -74,7 +74,7 @@ class SprUsers extends \yii\db\ActiveRecord
 
     public function getSprStatus()
     {
-        return $this->hasMany(SprStatus::className(), ['id' => 'status_id']);
+        return $this->hasOne(SprStatus::className(), ['id' => 'status_id']);
     }
 
     public function setTestUser()

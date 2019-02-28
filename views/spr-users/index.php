@@ -1,11 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-//use yii\grid\GridView;
+use kartik\grid\DataColumn;
+use kartik\grid\BooleanColumn;
 use kartik\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
-use kartik\grid\ActionColumn;
+
+
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SprUsersSearch */
@@ -25,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= GridView::widget([
-            'export'=>false,
+//            'export'=>true,
             'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -50,17 +53,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'userAddress.city',
             ],
             'login',
-            'password',
+            [
+                'class' => 'kartik\grid\BooleanColumn',
+                'attribute' => 'status_id',
+                'vAlign' => 'middle',
+//                'value' => 'sprStatus.status_name',
+            ],
+//            'status_id',
+//            'password',
             'name',
             'last_name',
 //            'date_reg',
-//            'status_id',
+
             //'descript:ntext',
 
             [
                 'class' => 'kartik\grid\ActionColumn',
-//                'dropdown' => $this->dropdown,
-                'dropdownOptions' => ['class' => 'float-right'],
+                'dropdown' => 'kartik\bs4Dropdown',
+                'dropdownOptions' => ['class' => 'dropdown-menu-right'],
                 'urlCreator' => function($action, $model, $key, $index) { return Url::to([$action, 'id' => $key]); },
                 'viewOptions' => ['title' => 'This will launch the book details page. Disabled for this demo!', 'data-toggle' => 'tooltip'],
                 'updateOptions' => ['<?= Html::encode($this->update) ?>', 'title' => 'This will launch the book update page. Disabled for this demo!', 'data-toggle' => 'tooltip'],

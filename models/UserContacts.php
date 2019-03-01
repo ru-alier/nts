@@ -31,11 +31,21 @@ class UserContacts extends \yii\db\ActiveRecord
         return [
             [['id_vid_type', 'data', 'user_id'], 'required'],
             [[ 'user_id'], 'integer'],
+            [[ 'user_id'], 'validateIsExistID'],
             [['data'], 'string', 'max' => 30],
             [['comment'], 'string', 'max' => 500],
         ];
     }
 
+
+    public function validateIsExistID($attr)
+    {
+        if (is_null(SprUsersSearch::findOne(['id'=>$this->user_id])))
+        {
+            $this->addError($attr, 'Пользователь с таким ID не существует, проверьте корректность введеного User ID');
+            echo SprUsersSearch::findOne(['id'=>$this->user_id]);
+        }
+    }
     /**
      * {@inheritdoc}
      */

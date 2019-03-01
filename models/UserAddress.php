@@ -36,11 +36,22 @@ class UserAddress extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required'],
             [['user_id'], 'integer'],
+            [['user_id'], 'validateIsExistID'],
             [['country', 'city'], 'string', 'max' => 45],
             [['region', 'street'], 'string', 'max' => 255],
             [['building', 'house_number', 'apartment'], 'string', 'max' => 5],
             [['comment'], 'string', 'max' => 1000],
         ];
+    }
+
+
+    public function validateIsExistID($attr)
+    {
+        if (is_null(SprUsersSearch::findOne(['id'=>$this->user_id])))
+        {
+            $this->addError($attr, 'Пользователь с таким ID не существует, проверьте корректность введеного User ID');
+            echo SprUsersSearch::findOne(['id'=>$this->user_id]);
+        }
     }
 
     /**

@@ -2,8 +2,6 @@
 
 namespace app\controllers;
 
-use app\components\PaspWidget;
-use app\models\PassportDetails;
 use Yii;
 use app\models\SprUsers;
 use app\models\SprUsersSearch;
@@ -93,7 +91,7 @@ class SprUsersController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -131,4 +129,5 @@ class SprUsersController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\conditions\ExistsCondition;
 
 /**
  * This is the model class for table "passport_details".
@@ -34,12 +35,22 @@ class PassportDetails extends \yii\db\ActiveRecord
         return [
             [['passport_series', 'passport_number', 'passport_issued_by', 'passport_when_issued', 'user_id'], 'required'],
             [['user_id'], 'integer'],
+            [['user_id'], 'validateIsExistID'],
             [['passport_when_issued', 'passport_series', 'passport_number'], 'safe'],
             [['passport_issued_by'], 'string', 'max' => 255],
             [['passport_division_number'], 'string', 'max' => 7],
             [['comment'], 'string', 'max' => 1000],
             [['passport_series', 'passport_number'],'string', 'max' => 6]
         ];
+    }
+
+    public function validateIsExistID($attr)
+    {
+        if (is_null(SprUsersSearch::findOne(['id'=>$this->user_id])))
+        {
+            $this->addError($attr, 'Пользователь с таким ID не существует, проверьте корректность введеного User ID');
+            echo SprUsersSearch::findOne(['id'=>$this->user_id]);
+        }
     }
 
     /**

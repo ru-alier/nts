@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput()->label('Ввидете ID пользователя для которого создается/редактируется запись') ?>
+    <?= $form->field($model, 'user_id')->textInput()->label('Ввидите пользователя для которого создается/редактируется запись(User_ID)') ?>
 
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
 

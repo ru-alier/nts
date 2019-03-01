@@ -96,4 +96,13 @@ class SprUsers extends \yii\db\ActiveRecord
                 -> generatePasswordHash($password, 12);
     }
 
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            UserContacts::deleteAll(['user_id' => $this->id]);
+            UserAddress::deleteAll(['user_id' => $this->id]);
+            PassportDetails::deleteAll(['user_id' => $this->id]);
+                return true;
+        } else return false;
+    }
 }

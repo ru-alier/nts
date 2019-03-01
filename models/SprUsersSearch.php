@@ -75,4 +75,6 @@ class SprUsersSearch extends SprUsers
 
         return $dataProvider;
     }
+
+
 }

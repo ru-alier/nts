@@ -11,7 +11,7 @@ use yii\helpers\Url;
 $this->title = 'Паспортные данные';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="passport-details-index">
+<div class="passport-details-index" style="margin-inside: 50px">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
 
@@ -76,4 +77,6 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
 </div>
+

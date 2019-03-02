@@ -39,4 +39,4 @@ $this->params['breadcrumbs'][] = 'Пользователь '.$this->title;
     ]) ?>
 
 </div>
-<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>
+<?= Html::a('Просмотреть основную карточку', ['spr-users/view', 'id' => $model->user_id], ['class' => 'btn btn-primary']); ?>

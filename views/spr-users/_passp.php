@@ -28,7 +28,15 @@ $model = PassportDetailsSearch::findOnePassport(['user_id'=>$id]);
             'user_id',
         ],
     ]);
-    echo Html::a('Отредактировать', ['passport-details/update', 'id' => $model->id], ['class' => 'btn btn-success']);
+    echo Html::a('Создать', ['passport-details/create', 'user_id' => $model->user_id], ['class' => 'btn btn-success', 'style' => 'margin-right: 20px']);
+    echo Html::a('Редактировать', ['passport-details/update', 'id' => $model->id], ['class' => 'btn btn-success text-center', 'style' => 'margin-right: 20px']);
+    echo Html::a('Удалить', ['passport-details/delete', 'id' => $model->id], [
+        'class' => 'btn btn-danger',
+        'data' => [
+            'confirm' => 'Вы действительно хотите удалить запись,',
+            'method' => 'post',
+        ],
+    ]);
     ?>
 
 </div>

@@ -52,7 +52,9 @@ class SprUsersController extends Controller
      */
     public function actionView($id)
     {
-
+        if ((SprUsers::findOne($id)) === null ) {
+            return $this->redirect(['create', 'id' => $id]);
+        } else
         return $this->render('view',
         [
             'model' => $this->findModel($id),
@@ -67,9 +69,10 @@ class SprUsersController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new SprUsers();
+        $model -> id = $id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

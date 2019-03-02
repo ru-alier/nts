@@ -30,7 +30,15 @@ $model = UserAddressSearch::findOne(['user_id'=>$id]);
             'user_id',
         ],
     ]);
-    echo Html::a('Отредактировать', ['user-address/update', 'id' => $model->id], ['class' => 'btn btn-success']);
+    echo Html::a('Создать', ['user-address/create', 'user_id' => $model->user_id], ['class' => 'btn btn-success', 'style' => 'margin-right: 20px']);
+    echo Html::a('Редактировать', ['user-address/update', 'id' => $model->id], ['class' => 'btn btn-success text-center', 'style' => 'margin-right: 20px']);
+    echo Html::a('Удалить', ['user-address/delete', 'id' => $model->id], [
+        'class' => 'btn btn-danger',
+        'data' => [
+            'confirm' => 'Вы действительно хотите удалить запись,',
+            'method' => 'post',
+        ],
+    ]);
     ?>
 
 </div>

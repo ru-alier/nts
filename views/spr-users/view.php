@@ -75,26 +75,9 @@ echo \yii\bootstrap\Tabs::widget([
 'items' => [
     [
      'label' => 'Контакты',
-//     'items'=>[
-//             [
             'label' => 'Контакты',
-            'content' => $this->render('_contact', ['id' => $model->id])
+            'content' => $this->render('_contactpage', ['id' => $model->id])
             ],
-//            [
-//            'label' => 'Контакт 2',
-//            'content' => $this->render('_contact', ['id' => $contacts[1]])
-//            ],
-//            [
-//             'label' => 'Контакт 3',
-//             'content' => $this->render('_contact', ['id' => $contacts[2]])
-//            ],
-//            [
-//             'label' => 'Контакт 4',
-//             'content' => $this->render('_contact', ['id' => $contacts[3]])
-//            ],
-//            ]
-//    ],
-
     ['label' => 'Адрес',
     'content' => $this->render('_address', ['id' => $model->id])
     ],

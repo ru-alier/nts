@@ -51,6 +51,10 @@ class PassportDetails extends \yii\db\ActiveRecord
             $this->addError($attr, 'Пользователь с таким ID не существует, проверьте корректность введеного User ID');
             echo SprUsersSearch::findOne(['id'=>$this->user_id]);
         }
+       else if ((count(PassportDetailsSearch::find()->where(['user_id'=>$this->user_id])->all())>=1) && $this->id === null)
+       {
+           $this->addError($attr, 'Паспортные данные для этого пользователя уже существуют, запрещено вводить больше одного паспорта');
+       }
     }
 
     /**

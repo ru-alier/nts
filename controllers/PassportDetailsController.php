@@ -62,9 +62,10 @@ class PassportDetailsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($user_id)
     {
         $model = new PassportDetails();
+        $model -> user_id = $user_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -106,7 +107,7 @@ class PassportDetailsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/spr-users/index']);
     }
 
     /**

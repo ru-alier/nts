@@ -13,6 +13,7 @@ $this->title = 'BaseEditor';
             Чтобы запусить его нажмите кнопку ниже. </p>
 
         <p><a class="btn btn-lg btn-success" href="/spr-users">Начать работу</a></p>
+
     </div>
 
 

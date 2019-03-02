@@ -24,7 +24,13 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?= Html::submitButton('Записать', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Записать', ['class' => 'btn btn-success',
+        'data' => 
+        [
+            'confirm' => 'Вы действительно хотите сохранить изменения?',
+            'method' => 'post',
+        ]]) ?>
+        <input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>
     </div>
 
     <?php ActiveForm::end(); ?>

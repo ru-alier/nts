@@ -6,8 +6,7 @@ use yii\widgets\DetailView;
 
 if (PassportDetailsSearch::findOne(['user_id'=>$id])===null) {
     echo '<h1>У пользователя (id '.$id. ') не заполненны паспортные данные. <br/>';
-    echo Html::a('Создать запись', ['passport-details/create', 'user_id' => $id], ['class' => 'btn btn-success']);
-    echo '<h4>* Запомните текущий ID пользователя он вам понадобиться для заполнения формы!</h4>';
+    echo Html::a('Добавить', ['passport-details/create', 'user_id' => $id], ['class' => 'btn btn-success']);
     return;
 };
 $model = PassportDetailsSearch::findOnePassport(['user_id'=>$id]);
@@ -17,6 +16,7 @@ $model = PassportDetailsSearch::findOnePassport(['user_id'=>$id]);
 
     <?= DetailView::widget([
         'model' => $model,
+        // 'options' => ['style'=>'width: 500px', 'class' => 'table table-striped table-bordered'],
         'attributes' => [
             'id',
             'passport_series',

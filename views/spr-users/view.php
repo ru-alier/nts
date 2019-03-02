@@ -12,7 +12,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Справочник пользо�
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="spr-users-view">
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseUserInfo" aria-expanded="false" aria-controls="collapseUserInfo">
+Просмотреть основную запись
+  </button>
+<div class="collapse" id="collapseUserInfo">
 
     <h1>Пользователь: <?= Html::encode($this->title) ?></h1>
 
@@ -21,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы действительно хотите удалить пользователя?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -48,53 +52,25 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div>
-<!--<ul class="nav nav-tabs">-->
-<!--    <li class="active"><a href="--><?//= Url::toRoute(['passport-details/view', 'id'=> $model->id]); ?><!--">Паспорт</a></li>-->
-<!--    <li><a href="--><?//= Url::toRoute(['user-address/view', 'id'=> $model->id]); ?><!--">Адрес</a></li>-->
-<!--    <li><a href="--><?//= Url::toRoute(['user-contacts/view', 'id'=> $model->id]); ?><!--">Контакты</a></li>-->
-<!--</ul>-->
-<?php //echo Yii::$app->controller->render(Url::toRoute(Url::toRoute(['passport-details/view', 'id'=> $model->id]))) ?>
 <?php
-
-//$contacts = \app\models\UserContactsSearch::find()->where(['user_id'=>$model->id])->asArray()->all();
-
-//$contTab=[];0
-//
-//foreach ($contacts as $item){
-//    $idTemp = $item[id];
-//    $contTab=array_push(['label'=>'контакт'.$idTemp], ['content'=>$this->render('_contact', cpmpact[id]);
-
-//};
-//['label' => 'Адрес 1'.$model->id,'content' => $this->render('_contact', ['id' => $model->id])],
-//
-//['label' => 'Адрес 2','content' => $this->render('_contact', ['id' => $model->id])]]
-
-
 
 echo \yii\bootstrap\Tabs::widget([
 'items' => [
     [
-     'label' => 'Контакты',
-            'label' => 'Контакты',
-            'content' => $this->render('_contactpage', ['id' => $model->id])
-            ],
-    ['label' => 'Адрес',
+    'label' => "<i class=\"glyphicon glyphicon-phone-alt\" aria-hidden=\"true\"></i> Место жительства",
+    'encode' => false,
     'content' => $this->render('_address', ['id' => $model->id])
     ],
-    ['label' => 'Паспорт',
+    ['label' => "<i class=\"glyphicon glyphicon-user \" aria-hidden=\"true\"></i> Паспортные данные",
+    'encode' => false,
     'content' => $this->render('_passp', ['id' => $model->id])
+    ],
+    [
+    'label' => "<i class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></i> Контактная информация",
+    'encode' => false,
+    'content' => $this->render('_contactpage', ['id' => $model->id])
     ],
 ]])
 
-
-
-//echo \yii\bootstrap\Carousel::widget([
-//    'items' => [
-//
-//        ['label' => 'Контакты', 'content' => '<h1>1</h1>', 'active' => 'true'],
-//        ['label' => 'Адрес', 'content' => '<h1>2</h1>'],
-//        ['label' => 'Паспорт', 'content' => '<h1>3</h1>'],
-//    ]]);
 ?>
-</div()>
-<input type="button" onclick="history.back();" value="Назад" class="btn btn-primary"/>
+</div>

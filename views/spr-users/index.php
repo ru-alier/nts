@@ -23,14 +23,22 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать запись для пользователя', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+//          disabled through numbering
 //            ['class' => 'yii\grid\SerialColumn'],
+//          disabling view city
+            // [
+            //     'attribute' => 'id',
+            //     'value' => 'id',
+            //     'width' => '70px',
+            // ],
+//          View Comment field
             [
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'width' => '50px',
@@ -44,32 +52,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
                 'expandOneOnly' => true,
                 ],
-
-            [
-                'attribute' => 'city',
-                'value' => 'userAddress.city',
-//                    SprUsersSearch::find()->joinWith(['userAddress'])
-//                    ->andFilterWhere(['like', 'city', city]),
-                'label' => 'Город'
-            ],
+//          disabling view city
+//             [
+//                 'attribute' => 'city',
+//                 'value' => 'userAddress.city',
+// //                    SprUsersSearch::find()->joinWith(['userAddress'])
+// //                    ->andFilterWhere(['like', 'city', city]),
+//                 'label' => 'Город'
+//             ],
             'login',
+//            'status_id',
+           'password',
+            'name',
+            'last_name',
+           'date_reg',
+//          View status field
             [
                 'class' => 'kartik\grid\BooleanColumn',
                 'attribute' => 'status_id',
                 'vAlign' => 'middle',
 //                'value' => 'sprStatus.status_name',
             ],
-//            'status_id',
-//            'password',
-            'name',
-            'last_name',
-            [
-                'attribute' => 'id',
-                'value' => 'id',
-                'width' => '70px',
-            ],
-//            'date_reg',
-
             //'descript:ntext',
 
             [

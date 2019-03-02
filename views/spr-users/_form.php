@@ -28,7 +28,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'descript')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Записать', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary',
+        'data' => 
+        [
+            'confirm' => 'Вы действительно хотите сохранить изменения?',
+            'method' => 'post',
+        ]]) ?>
+        <?= Html::a('Отменить', ['spr-users/index'], ['class' => 'btn btn-primary']); ?>
     </div>
 
     <?php ActiveForm::end(); ?>

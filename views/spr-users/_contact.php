@@ -9,16 +9,17 @@ use yii\bootstrap\Widget;
 <?php
     echo DetailView::widget([
         'model' => $modelPage,
+        // 'options' => ['width' => '500', 'class' => 'table table-striped table-bordered'],
         'attributes' => [
-            'id',
-            'id_vid_type',
+            // 'id',
+            'user_id',
+            // 'id_vid_type',
             [
-                'label' => 'Тип связи',
+                'label' => 'Вид связи',
                 'value'=>$modelPage->sprContactType->type,
             ],
             'data',
             'comment',
-            'user_id',
         ],
     ]);
 

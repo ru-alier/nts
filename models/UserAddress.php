@@ -34,7 +34,7 @@ class UserAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
+            [['user_id','country', 'city','street','house_number'], 'required'],
             [['user_id'], 'integer'],
             [['user_id'], 'validateIsExistID'],
             [['country', 'city'], 'string', 'max' => 45],

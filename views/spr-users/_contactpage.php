@@ -6,8 +6,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 if (UserContactsSearch::findOne(['user_id'=>$id])===null) {
     echo '<h1>У пользователя (id '.$id. ') отсутсвует контактная информация. <br/>';
-    echo Html::a('Создать запись', ['user-contacts/create', 'user_id' => $id], ['class' => 'btn btn-success']);
-    echo '<h4>* Запомните текущий ID пользователя он вам понадобиться для заполнения формы!</h4>';
+    echo Html::a('Добавить', ['user-contacts/create', 'user_id' => $id], ['class' => 'btn btn-success']);
     return;
 };
 $model = UserContactsSearch::find()->andFilterWhere(['user_id'=>$id])->with('sprContactType')->all();

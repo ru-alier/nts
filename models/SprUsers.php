@@ -32,7 +32,7 @@ class SprUsers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['login', 'password', 'name', 'last_name', 'date_reg', 'descript'], 'required'],
+            [['login', 'password', 'name', 'last_name', 'date_reg'], 'required'],
             [['date_reg', 'status_id'], 'safe'],
 //            [['status_id'], 'integer'],
             [['descript'], 'string'],

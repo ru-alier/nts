@@ -62,7 +62,7 @@ class PassportDetailsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($user_id)
+    public function actionCreate($user_id=null)
     {
         $model = new PassportDetails();
         $model -> user_id = $user_id;

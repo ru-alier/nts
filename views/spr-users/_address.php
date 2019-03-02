@@ -5,9 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 if (UserAddressSearch::findOne(['user_id'=>$id])===null) {
-    echo '<h1>У пользователя (id '.$id. ') отсутсвует адрес информация. <br/>';
-    echo Html::a('Создать запись', ['user-address/create', 'user_id' => $id], ['class' => 'btn btn-success']);
-    echo '<h4>* Запомните текущий ID пользователя он вам понадобиться для заполнения формы!</h4>';
+    echo '<h1>У пользователя (id '.$id. ') отсутсвует адрес. <br/>';
+    echo Html::a('Добавить', ['user-address/create', 'user_id' => $id], ['class' => 'btn btn-success']);
     return;
 };
 $model = UserAddressSearch::findOne(['user_id'=>$id]);
@@ -17,8 +16,11 @@ $model = UserAddressSearch::findOne(['user_id'=>$id]);
 
     <?= DetailView::widget([
         'model' => $model,
+        // 'options' => ['width' => '70', 'class' => 'table table-striped table-bordered'],
+        
         'attributes' => [
-            'id',
+            // 'id',
+            'user_id',
             'country',
             'region',
             'city',
@@ -27,7 +29,6 @@ $model = UserAddressSearch::findOne(['user_id'=>$id]);
             'house_number',
             'apartment',
             'comment',
-            'user_id',
         ],
     ]);
     echo Html::a('Создать', ['user-address/create', 'user_id' => $model->user_id], ['class' => 'btn btn-success', 'style' => 'margin-right: 20px']);

@@ -63,7 +63,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Внимание!</strong> Ведется работа по доработке сейта, некоторые функции могут быть недоступны или будут работать не корректно.
+            <strong>Внимание!</strong> Ведется работа по доработке сайта, некоторые функции могут быть недоступны или могут работать не корректно.
         </div>
 
         <?= Breadcrumbs::widget([

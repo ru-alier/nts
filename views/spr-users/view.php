@@ -3,6 +3,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SprUsers */
@@ -27,10 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'data' => [
                 'confirm' => 'Вы действительно хотите удалить пользователя?',
                 'method' => 'post',
-            ],
+            ]
         ]) ?>
     </p>
-<?php    $status = \app\models\SprUsersSearch::find()->with(['sprStatus'])->where(['id'=>$model->id])->one(); ?>
+
+
+
+<?php $status = \app\models\SprUsersSearch::find()->with(['sprStatus'])->where(['id'=>$model->id])->one(); ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -47,6 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'status_id',
             'descript:ntext',
         ],
+
     ]) ?>
 
 </div>

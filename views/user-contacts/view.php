@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Контакты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Пользователь '.$this->title;
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-contacts-view">

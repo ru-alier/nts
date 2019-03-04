@@ -20,11 +20,11 @@ $config = [
             // use your own export download action or custom translation
             // message source
 //             'downloadAction' => 'gridview/export/download',
-//             'i18n' => [
-//                 'class' => 'yii \ i18n \ PhpMessageSource' ,
-//                 'basePath' => '@ kvgrid / messages' ,
-//                 'forceTranslation' => true
-//             ]
+            // 'i18n' => [
+            //     'class' => 'yii \ i18n \ PhpMessageSource' ,
+            //     'basePath' => '@ kvgrid / messages' ,
+            //     'forceTranslation' => true
+            // ]
         ],
     ],
     'components' => [
@@ -86,12 +86,12 @@ if (YII_ENV_DEV) {
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
-    ];
+    // $config['bootstrap'][] = 'gii';
+    // $config['modules']['gii'] = [
+    //     'class' => 'yii\gii\Module',
+    //     // uncomment the following to add your IP if you are not connecting from localhost.
+    //     //'allowedIPs' => ['127.0.0.1', '::1'],
+    // ];
 }
 
 return $config;

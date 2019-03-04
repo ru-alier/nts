@@ -54,7 +54,7 @@ class UserAddress extends \yii\db\ActiveRecord
         }
        else if ((count(UserAddressSearch::find()->where(['user_id'=>$this->user_id])->all())>=1)&& $this->id === null)
        {
-           $this->addError($attr, 'Адрес у данного пользователя уже существуют, запрещено вводить больше одного адреса');
+           $this->addError($attr, 'Адрес у данного пользователя уже существуют, запрещено вводить больше одного адреса (отредактируйте существующий)');
        }
     }
 

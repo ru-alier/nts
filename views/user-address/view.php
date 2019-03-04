@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = 'Пользователь '.$model->user_id;
         <?= Html::a('Delete', ['Удалить', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы действительно хотите удалить адрес?',
                 'method' => 'post',
             ],
         ]) ?>

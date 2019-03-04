@@ -36,7 +36,7 @@ $model = UserAddressSearch::findOne(['user_id'=>$id]);
     echo Html::a('Удалить', ['user-address/delete', 'id' => $model->id], [
         'class' => 'btn btn-danger',
         'data' => [
-            'confirm' => 'Вы действительно хотите удалить запись,',
+            'confirm' => 'Вы действительно хотите удалить запись?',
             'method' => 'post',
         ],
     ]);

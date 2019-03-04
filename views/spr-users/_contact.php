@@ -28,7 +28,7 @@ use yii\bootstrap\Widget;
     echo Html::a('Удалить', ['user-contacts/delete', 'id' => $modelPage->id], [
         'class' => 'btn btn-danger',
         'data' => [
-            'confirm' => 'Вы действительно хотите удалить запись,',
+            'confirm' => 'Вы действительно хотите удалить запись?',
             'method' => 'post',
         ],
     ]) 

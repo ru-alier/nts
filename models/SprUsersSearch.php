@@ -18,8 +18,10 @@ class SprUsersSearch extends SprUsers
     {
         return [
             [[ 'status_id'], 'integer'],
-            [['login'], 'unique'],
-            [[ 'login', 'password', 'name', 'last_name', 'date_reg', 'descript', 'id'], 'safe'],
+            [[ 'login', 'password', 'name', 'last_name', 'descript', 'id'], 'safe'],
+            [['date_reg'],'date', 'format' => 'php:Y-m-d H:i:s'],
+            [['date_reg', 'status_id'], 'safe'],
+        //    [['status_id'], 'integer'],
         ];
     }
 
@@ -77,5 +79,9 @@ class SprUsersSearch extends SprUsers
         return $dataProvider;
     }
 
+    public function delDublicateLogin(){
+        // $query = SprUsers::find()->select('id', 'login')->asArray()->all();
+        //
 
+    }
 }

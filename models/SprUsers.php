@@ -33,24 +33,17 @@ class SprUsers extends \yii\db\ActiveRecord
     {
         return [
             [['login', 'password', 'name', 'last_name', 'date_reg'], 'required'],
-            [['date_reg', 'status_id'], 'safe'],
-        //    [['status_id'], 'integer'],
             [['login'], 'unique'],
+            [['date_reg'], 'date', 'format' => 'php:Y-m-d H:i:s'],
+            [['status_id'], 'safe'],
+            [['login','name','last_name','descript'], 'trim'],
             [['descript'], 'string'],
             [['login', 'password', 'name', 'last_name'], 'string', 'max' => 50],
+            [['password'], 'string', 'min' => 4]
+        
         ];
     }
 
-    // public function validateIsUserLogin($attr){
-    //     if (SprUsersSearch::findOne(['login'=>$this->login]))
-    //     {
-    //         $this->addError($attr, 'Нельзя редактировать свою учетную запись');
-    //     }
-    // }
-
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [

@@ -19,7 +19,7 @@ class SprUsersSearch extends SprUsers
         return [
             [[ 'status_id'], 'integer'],
             [[ 'login', 'password', 'name', 'last_name', 'descript', 'id'], 'safe'],
-            [['date_reg'],'date', 'format' => 'php:Y-m-d H:i:s'],
+            [['date_reg'],'string'],
             [['date_reg', 'status_id'], 'safe'],
         //    [['status_id'], 'integer'],
         ];
@@ -63,7 +63,7 @@ class SprUsersSearch extends SprUsers
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date_reg' => $this->date_reg,
+            // 'date_reg' => $this->date_reg,
             'status_id' => $this->status_id,
         ]);
 
@@ -74,13 +74,14 @@ class SprUsersSearch extends SprUsers
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
             ->andFilterWhere(['like', 'descript', $this->descript])
+            ->andFilterWhere(['like', 'date_reg', $this->date_reg])
         ;
 
         return $dataProvider;
     }
 
     public function delDublicateLogin(){
-        // $query = SprUsers::find()->select('id', 'login')->asArray()->all();
+        // $bigTable = SprUsers::find()->select('id', 'login')->asArray()->all();
         //
 
     }

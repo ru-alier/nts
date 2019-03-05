@@ -34,14 +34,16 @@ class PassportDetails extends \yii\db\ActiveRecord
     {
         return [
             [['passport_series', 'passport_number', 'passport_issued_by', 'passport_when_issued', 'user_id'], 'required'],
+            [['passport_series', 'passport_number'], 'trim'],
+            [['passport_series'], 'string', 'min' => 4, 'max' => 4],
+            [['passport_number'], 'string', 'min' => 6, 'max' => 6],
             [['user_id'], 'integer'],
             [['user_id'], 'validateIsExistID'],
             [['passport_when_issued', 'passport_series', 'passport_number'], 'safe'],
             [['passport_issued_by'], 'string', 'max' => 255],
-            [['passport_division_number'], 'string', 'max' => 7],
+            [['passport_division_number'], 'string', 'max' => 7, 'min' => 7],
             [['comment'], 'string', 'max' => 1000],
-            [['passport_series', 'passport_number'],'string', 'max' => 6]
-        ];
+       ];
     }
 
     public function validateIsExistID($attr)
@@ -68,7 +70,7 @@ class PassportDetails extends \yii\db\ActiveRecord
             'passport_number' => 'Номер',
             'passport_issued_by' => 'Кем выдан',
             'passport_when_issued' => 'Когда выдан',
-            'passport_division_number' => 'Номер подразделения',
+            'passport_division_number' => '№ подразделения',
             'comment' => 'Комментарий',
             'user_id' => 'User ID',
         ];

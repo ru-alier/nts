@@ -35,6 +35,7 @@ class SprUsers extends \yii\db\ActiveRecord
             [['login', 'password', 'name', 'last_name', 'date_reg'], 'required'],
             [['date_reg', 'status_id'], 'safe'],
         //    [['status_id'], 'integer'],
+            [['login'], 'unique'],
             [['descript'], 'string'],
             [['login', 'password', 'name', 'last_name'], 'string', 'max' => 50],
         ];

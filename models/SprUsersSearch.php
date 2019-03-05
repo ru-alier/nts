@@ -18,6 +18,7 @@ class SprUsersSearch extends SprUsers
     {
         return [
             [[ 'status_id'], 'integer'],
+            [['login'], 'unique'],
             [[ 'login', 'password', 'name', 'last_name', 'date_reg', 'descript', 'id'], 'safe'],
         ];
     }

@@ -16,11 +16,14 @@ $model = UserAddressSearch::findOne(['user_id'=>$id]);
 
     <?= DetailView::widget([
         'model' => $model,
-        // 'options' => ['width' => '70', 'class' => 'table table-striped table-bordered'],
+        'options' => ['class' => 'table table-striped table-bordered table-condensed table-sm'],
         
         'attributes' => [
             // 'id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'class' => 'col-md-10',
+            ],
             'country',
             'region',
             'city',

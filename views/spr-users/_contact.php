@@ -9,7 +9,7 @@ use yii\bootstrap\Widget;
 <?php
     echo DetailView::widget([
         'model' => $modelPage,
-        // 'options' => ['width' => '500', 'class' => 'table table-striped table-bordered'],
+        'options' => ['class' => 'table table-striped table-bordered table-condensed table-sm'],
         'attributes' => [
             // 'id',
             'user_id',

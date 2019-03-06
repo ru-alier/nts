@@ -16,7 +16,7 @@ $model = PassportDetailsSearch::findOnePassport(['user_id'=>$id]);
 
     <?= DetailView::widget([
         'model' => $model,
-        // 'options' => ['style'=>'width: 500px', 'class' => 'table table-striped table-bordered'],
+        'options' => ['class' => 'table table-striped table-bordered table-condensed table-sm'],
         'attributes' => [
             'id',
             'passport_series',

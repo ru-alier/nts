@@ -43,6 +43,7 @@ class PassportDetails extends \yii\db\ActiveRecord
             [['passport_issued_by'], 'string', 'max' => 255],
             [['passport_division_number'], 'string', 'max' => 7, 'min' => 7],
             [['comment'], 'string', 'max' => 1000],
+            [['passport_series'], 'unique', 'targetAttribute'=>['passport_series','passport_number']]
        ];
     }
 

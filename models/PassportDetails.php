@@ -39,11 +39,13 @@ class PassportDetails extends \yii\db\ActiveRecord
             [['passport_number'], 'string', 'min' => 6, 'max' => 6],
             [['user_id'], 'integer'],
             [['user_id'], 'validateIsExistID'],
-            [['passport_when_issued', 'passport_series', 'passport_number'], 'safe'],
+            // [['passport_when_issued', 'passport_series', 'passport_number'], 'safe'],
             [['passport_issued_by'], 'string', 'max' => 255],
             [['passport_division_number'], 'string', 'max' => 7, 'min' => 7],
+            ['passport_division_number','match','pattern'=>'/[0-9]{3}-[0-9]{3}/'],
             [['comment'], 'string', 'max' => 1000],
-            [['passport_series'], 'unique', 'targetAttribute'=>['passport_series','passport_number']]
+            [['passport_series'], 'unique', 'targetAttribute'=>['passport_series','passport_number']],
+            [['passport_when_issued'], 'date', 'format' => 'php:Y-m-d'],
        ];
     }
 

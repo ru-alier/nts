@@ -1,6 +1,6 @@
 document.oncontextmenu = function() {return false;};
 
-$(document).ready(function() {
+$(function() {
 
     // Вешаем слушатель события нажатие кнопок мыши для всего документа:
     function myMenu(){
@@ -53,16 +53,26 @@ $(document).ready(function() {
     }
 
     function clickMenu () {
-         $('tbody tr').on('click', function (ev){
-                window.location.href = '/spr-users/view?id='+this.dataset.key;
-            });
+        //выделяем все td кроме первого столбца с div-ом
+        var keys = $('tbody tr td:not(td.kv-align-center.kv-align-middle)').css('border', '3px solid blue');
+        //  console.log(keys);
+        // Проходим по каждому найденому элементу, ищем ключ у родителя 
+        // и добавляем ссылки на обработку нажатия левой кнопкой мыши
+        for (var i=0; i<keys.length; i++){
+            keys[i].onclick = function(){
+                window.location.href = '/spr-users/view?id='+ this.parentElement.dataset.key;
+            }
+            keys[i].style.cursor = 'pointer';
+            // console.log(keys[i].parentElement.dataset.key);
+         }
+
         };
 
     myMenu();
-    // clickMenu();
+    clickMenu();
     // $('tr td div').off('click').css('border', '3px solid blue');
 
-    // $(document).on('pjax:success', clickMenu);
+    $(document).on('pjax:success', clickMenu);
     $(document).on('pjax:success', myMenu)
 
 });
